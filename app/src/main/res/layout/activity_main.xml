@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+tools:context=".MainActivity">
+    <LinearLayout
+        xmlns:mapbox="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/layoutMap"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <com.mapbox.mapboxsdk.maps.MapView
+            android:id="@+id/mapView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            mapbox:mapbox_cameraTargetLat="-16.3988"
+            mapbox:mapbox_cameraTargetLng="-71.5369"
+            mapbox:mapbox_cameraZoom="10"
+            mapbox:mapbox_styleUrl="mapbox://styles/mrmichaelbot/cjgb51qz22dzm2sq5c6gzzzzn" />
+        <!--
+        <io.github.yavski.fabspeeddial.FabSpeedDial
+            android:id="@+id/fab_speed_dial"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            app:fabGravity="bottom_end"
+            app:fabMenu="@menu/menu_options"
+            app:miniFabBackgroundTint="?attr/color_primary_dark"
+            app:miniFabDrawableTint="?attr/color_secondary"
+            app:miniFabTitleTextColor="?attr/color_secondary" />
+            -->
+
+    </LinearLayout>
+
+</LinearLayout>

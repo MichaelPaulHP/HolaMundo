@@ -1,0 +1,29 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <!-- THEME FULL BLACK  -->
+    <style name="AppThemeBlack" parent="Theme.AppCompat.Light.NoActionBar" >
+
+        <item name="colorPrimary">#000</item> <!-- primary UI elements   -->
+        <item name="colorPrimaryDark">#000</item> <!-- the status bar    -->
+        <item name="android:colorBackground">#000</item> <!-- background   -->
+        <item name="colorAccent">#FFF</item> <!-- views    -->
+        <item name="android:textColor">#FFF</item> <!-- text color    -->
+        <item name="android:fontFamily">@font/source_code_pro</item>
+
+        <item name="color_primary" >#000</item> <!-- background   -->
+        <item name="color_secondary">#DDD</item><!-- icons and text  icon  -->
+        <item name="color_primary_dark" >#FFF</item><!-- fondo de bot nav y  nav view   -->
+        <item name="color_secondary_dark" >#FFF</item><!-- background components   -->
+        <item name="color_accent">#FFF</item>
+
+
+
+    </style>
+</resources>

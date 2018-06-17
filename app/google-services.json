@@ -1,0 +1,59 @@
+{
+  "project_info": {
+    "project_number": "888408752827",
+    "firebase_url": "https://hola-f0ff9.firebaseio.com",
+    "project_id": "hola-f0ff9",
+    "storage_bucket": "hola-f0ff9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:888408752827:android:a3b65cd2fb5e7292",
+        "android_client_info": {
+          "package_name": "com.example.mrrobot.hola"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "888408752827-4aipmqer0joe65paduvcqdgfof5smr10.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mrrobot.hola",
+            "certificate_hash": "a1b25577852b8b75c8d1302844503b5fb7f1db81"
+          }
+        },
+        {
+          "client_id": "888408752827-63khkq2m2p8tqf6jas8cv4etivc5ns38.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "888408752827-u63ga6ivl14jj4gvf9v24m5n8ivgl28g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSiPTZt-nEwe69ZFlbjcn7CZi9aQIPlEc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "888408752827-63khkq2m2p8tqf6jas8cv4etivc5ns38.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
