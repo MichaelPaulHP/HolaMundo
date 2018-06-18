@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.example.mrrobot.hola.Services.ServiceLocation;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.mapbox.mapboxsdk.Mapbox;
 import com.mapbox.mapboxsdk.annotations.MarkerOptions;
 import com.mapbox.mapboxsdk.camera.CameraPosition;
@@ -20,19 +21,19 @@ import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 
-import io.github.yavski.fabspeeddial.FabSpeedDial;
+
 
 public class MainActivity extends AppCompatActivity
         implements View.OnClickListener, OnMapReadyCallback,
-        MapboxMap.OnMapClickListener,
-        FabSpeedDial.MenuListener{
+        MapboxMap.OnMapClickListener
+        {
 
     // attributes
     private MapView mapView;
     private MapboxMap mapboxMap;
     private Location myLocation;
 
-    private  FabSpeedDial fabSpeedDial;// menu
+    private FloatingActionsMenu floatingActionMenu;// menu
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,12 +52,12 @@ public class MainActivity extends AppCompatActivity
         mapView.getMapAsync(this);
 
         // set listener for menu
-        //fabSpeedDial.setMenuListener(this);
+
 
     }
     private void initUI(){
         mapView = (MapView) findViewById(R.id.mapView);
-        //fabSpeedDial = (FabSpeedDial) findViewById(R.id.fab_speed_dial);
+        floatingActionMenu = (FloatingActionsMenu) findViewById(R.id.floatingActionMenu);
     }
     @Override
     public void onClick(View view) {
@@ -86,22 +87,6 @@ public class MainActivity extends AppCompatActivity
     // END MAP BOX listener
 
 
-    // MENU OPTIONS
-    @Override
-    public boolean onPrepareMenu(NavigationMenu navigationMenu) {
-        return false;
-    }
-
-    @Override
-    public boolean onMenuItemSelected(MenuItem menuItem) {
-        return false;
-    }
-
-    @Override
-    public void onMenuClosed() {
-
-    }
-    // END MENU OPTIONS
 
     @Override
     public void onStart() {
