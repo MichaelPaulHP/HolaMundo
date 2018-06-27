@@ -1,0 +1,59 @@
+{
+  "project_info": {
+    "project_number": "604600699948",
+    "firebase_url": "https://negocioselectronicos-f72cf.firebaseio.com",
+    "project_id": "negocioselectronicos-f72cf",
+    "storage_bucket": "negocioselectronicos-f72cf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:604600699948:android:d02aa3db0082b6d2",
+        "android_client_info": {
+          "package_name": "com.example.doffy.negocioselectronicos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "604600699948-ji6f82a4dpa4sk4b76v8ribpreq95bu5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.doffy.negocioselectronicos",
+            "certificate_hash": "a3a8061f38796bf8539c14721afc5696f5bbe2be"
+          }
+        },
+        {
+          "client_id": "604600699948-t79u951os9ebl8vosrfdrk8dbvso5ss2.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "604600699948-t79u951os9ebl8vosrfdrk8dbvso5ss2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfQgK5rQxPpQPI39jTB0tKZz4fpTAdMoM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "604600699948-t79u951os9ebl8vosrfdrk8dbvso5ss2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

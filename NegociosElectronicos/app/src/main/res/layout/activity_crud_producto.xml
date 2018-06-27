@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CrudProducto"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="10dp"
+        android:background="@color/colorBlack">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:src="@drawable/logo"
+            android:layout_weight="1"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gestiona tus productos"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"
+            android:textSize="10pt"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="2pt"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:gravity="center">
+        <EditText
+            android:id="@+id/txtIdProd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="ID: P0000001"
+            android:text="p1234567"/>
+        <ImageButton
+            android:id="@+id/btnBuscar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_search2"/>
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="20dp">
+
+        <EditText
+            android:id="@+id/txtNomPro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombre Producto"/>
+        <EditText
+            android:id="@+id/txtDesPro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Descripción"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <EditText
+                android:id="@+id/txtPrecio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Precio: 0.0"
+                android:layout_weight="1"/>
+            <EditText
+                android:id="@+id/txtStock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Stock: 1"
+                android:layout_weight="1"/>
+            <EditText
+                android:id="@+id/txtCategoria"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="categoria"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/ivImgPro"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:src="@drawable/ic_img_empty"/>
+            <Button
+                android:id="@+id/btnUpImg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Subir Imagen"/>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <ImageButton
+            android:id="@+id/btnAddProducto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_add"/>
+        <ImageButton
+            android:id="@+id/btnUpdateProducto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_update"/>
+        <ImageButton
+            android:id="@+id/btnDeleteProducto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_delete"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/llShowOpcions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:background="@color/colorGrey">
+        <ImageButton
+            android:id="@+id/btnShowOpcions"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_showopcions"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/llHideOpcions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:background="@color/colorGrey"
+        android:visibility="gone">
+        <ImageButton
+            android:id="@+id/btnHideOpcions"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_hideopcions"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/llOpciones"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="2dp"
+        android:gravity="center"
+        android:visibility="gone">
+        <ImageButton
+            android:id="@+id/btnCategorías"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_categorias"/>
+        <ImageButton
+            android:id="@+id/btnVentas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_ventas"/>
+        <ImageButton
+            android:id="@+id/btnCompras"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_compras"/>
+        <ImageButton
+            android:id="@+id/btnClientes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_clientes"/>
+        <ImageButton
+            android:id="@+id/btnCarrito"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_carrito"/>
+        <ImageButton
+            android:id="@+id/btnChat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_chat"/>
+    </LinearLayout>
+</LinearLayout>
