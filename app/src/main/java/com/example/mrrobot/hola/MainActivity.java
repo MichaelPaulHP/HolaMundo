@@ -17,9 +17,12 @@ import android.support.v4.view.GravityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +35,9 @@ import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
+import com.orhanobut.dialogplus.DialogPlus;
+import com.orhanobut.dialogplus.OnItemClickListener;
+import com.orhanobut.dialogplus.ViewHolder;
 import com.yalantis.contextmenu.lib.ContextMenuDialogFragment;
 import com.yalantis.contextmenu.lib.MenuObject;
 import com.yalantis.contextmenu.lib.MenuParams;
@@ -148,7 +154,13 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onMenuItemClick(View clickedView, int position) {
         // el position=cero es el "x"
-        Toast.makeText(this, "Clicked on position: " + position, Toast.LENGTH_SHORT).show();
+
+        switch (position){
+            case 1:
+                // search
+                showSearchDialog();
+                break;
+        }
     }
 
     @Override
@@ -175,38 +187,38 @@ public class MainActivity extends AppCompatActivity
         List<MenuObject> menuObjects = new ArrayList<>();
 
         MenuObject close = new MenuObject();
-        close.setBgColor(R.color.colorPrimaryDark);
+        close.setBgResource(R.color.colorPrimaryDark);
         close.setResource(R.drawable.ic_close_white_24dp);
-        close.setMenuTextAppearanceStyle(R.style.TextViewStyle);
+        close.setDividerColor(R.color.colorPrimaryDark);
+        //close.setMenuTextAppearanceStyle(R.style.TextViewStyle);
 
-        MenuObject search = new MenuObject("Buscar");
-        search.setBgColor(R.color.colorPrimaryDark);
-        BitmapDrawable bd = new BitmapDrawable(getResources(),
-                BitmapFactory.decodeResource(getResources(), R.drawable.ic_search_white_24dp));
-        search.setDrawable(bd);
-        //search.setResource(R.drawable.ic_search_white_24dp);
-        search.setMenuTextAppearanceStyle(R.style.TextViewStyle);
+        MenuObject search = new MenuObject();
+        search.setBgResource(R.color.colorPrimaryDark);
+        search.setResource(R.drawable.ic_search_white_24dp);
+        search.setDividerColor(R.color.colorPrimaryDark);
+        //search.setMenuTextAppearanceStyle(R.style.TextViewStyle);
 
-        MenuObject chat = new MenuObject("Chat");
-        chat.setBgColor(R.color.colorPrimaryDark);
+        MenuObject chat = new MenuObject();
+        chat.setBgResource(R.color.colorPrimaryDark);
         chat.setResource(R.drawable.ic_chat_white_24dp);
-        chat.setMenuTextAppearanceStyle(R.style.TextViewStyle);
+        chat.setDividerColor(R.color.colorPrimaryDark);
+        //chat.setMenuTextAppearanceStyle(R.style.TextViewStyle);
 
-        MenuObject group = new MenuObject("Grupos");
-        group.setBgColor(R.color.colorPrimaryDark);
+        MenuObject group = new MenuObject();
+        group.setBgResource(R.color.colorPrimaryDark);
         group.setResource(R.drawable.ic_group_add_white_24dp);
-        group.setMenuTextAppearanceStyle(R.style.TextViewStyle);
+        group.setDividerColor(R.color.colorPrimaryDark);
+        //group.setMenuTextAppearanceStyle(R.style.TextViewStyle);
 
 
-        MenuObject user = new MenuObject("Perfil");
-        user.setBgColor(R.color.colorPrimaryDark);
+        MenuObject user = new MenuObject();
+        user.setBgResource(R.color.colorPrimaryDark);
         user.setResource(R.drawable.ic_person_white_24dp);
-        user.setMenuTextAppearanceStyle(R.style.TextViewStyle);
-
+        //user.setMenuTextAppearanceStyle(R.style.TextViewStyle);
+        user.setDividerColor(R.color.colorPrimaryDark);
 
 
         menuObjects.add(close);
-        menuObjects.add(user);
         menuObjects.add(search);
         menuObjects.add(chat);
         menuObjects.add(group);
@@ -222,7 +234,22 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    private void showSearchDialog(){
+        DialogPlus dialog = DialogPlus.newDialog(this)
+                .setContentHolder( new ViewHolder(R.layout.dialog_search))
+                .setOnItemClickListener(new OnItemClickListener() {
+                    @Override
+                    public void onItemClick(DialogPlus dialog, Object item, View view, int position) {
+                    }
+                })
+                //.setContentWidth(ViewGroup.LayoutParams.WRAP_CONTENT)  // or any custom width ie: 300
 
+                .setGravity(Gravity.TOP)
+                .setExpanded(true)  // This will enable the expand feature, (similar to android L share dialog)
+                .create();
+
+        dialog.show();
+    }
 
     /*
     @Override

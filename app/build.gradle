@@ -47,6 +47,8 @@ dependencies {
     //compile 'com.github.clans:fab:1.6.4'
     // hooa ,mudndedwed
     implementation 'com.github.Yalantis:Context-Menu.Android:1.0.8'
+    // dialog
+    implementation 'com.orhanobut:dialogplus:1.11@aar'
 }
 
 apply plugin: 'com.google.gms.google-services'

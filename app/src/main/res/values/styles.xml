@@ -26,8 +26,6 @@
 
 
     </style>
-    <style name="TextViewStyle" parent="TextView.DefaultStyle">
-        <item name="android:fontFamily">@font/source_code_pro</item>
-    </style>
+
 
 </resources>
