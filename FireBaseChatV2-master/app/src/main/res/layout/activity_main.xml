@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.morochara.proyecto.version3.chat.com.kevin.com.firebasechat.Activity.MainActivity"
+    android:padding="5sp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/fotoPerfil"
+            android:layout_width="48sp"
+            android:layout_height="48sp"
+            android:src="@drawable/person" />
+        <TextView
+            android:id="@+id/nombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cargando..."
+            android:layout_gravity="center"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end|center">
+            <Button
+                android:id="@+id/cerrarSesion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Cerrar Sesion" />
+        </LinearLayout>
+    </LinearLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvMensajes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+    </android.support.v7.widget.RecyclerView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="7sp">
+
+        <ImageButton
+            android:id="@+id/btnPaste"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:src="@drawable/paste" />
+
+
+
+        <ImageButton
+            android:id="@+id/btnEncrypt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:src="@drawable/encrypt" />
+
+        <ImageButton
+            android:id="@+id/btnDecrypt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:src="@drawable/decrypt" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageButton
+            android:id="@+id/btnEnviarFoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/ic_menu_gallery"
+            android:layout_gravity="center"
+            />
+
+        <EditText
+            android:id="@+id/txtMensaje"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Escribe un mensaje"
+            android:layout_weight="1"/>
+        <ImageButton
+            android:id="@+id/btnMic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:src="@drawable/microfono"
+            android:layout_gravity="center"/>
+
+        <Button
+            android:id="@+id/btnEnviar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Enviar"/>
+    </LinearLayout>
+</LinearLayout>
