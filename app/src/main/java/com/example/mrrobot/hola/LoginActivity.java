@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.mrrobot.hola.Auth.NumberVerificationActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -41,7 +42,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         // Button listeners
         findViewById(R.id.sign_in_button).setOnClickListener(this);
-
+        findViewById(R.id.numTelephone).setOnClickListener(this);
 
         // [START config_signin]
         // Configure Google Sign In
@@ -67,6 +68,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
         // if currentUser != null -> show mainActivity
+        if(currentUser!=null) {
+            Intent goMain= new Intent(LoginActivity.this,MainActivity.class);
+            startActivity(goMain);
+            finish();
+        }
+
     }
     // [END on_start_check_user]
 
@@ -166,6 +173,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         int i = v.getId();
         if (i == R.id.sign_in_button) {
             signIn();
+        }
+        if(i == R.id.numTelephone){
+            startActivity( new Intent(LoginActivity.this, NumberVerificationActivity.class));
+
         }
     }
 }

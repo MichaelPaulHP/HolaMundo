@@ -1,6 +1,7 @@
 package com.example.mrrobot.hola;
 
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -28,6 +29,8 @@ import android.widget.Toast;
 
 import com.example.mrrobot.hola.Services.ServiceLocation;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.mapbox.mapboxsdk.Mapbox;
 import com.mapbox.mapboxsdk.annotations.MarkerOptions;
 import com.mapbox.mapboxsdk.camera.CameraPosition;
@@ -36,6 +39,7 @@ import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import com.orhanobut.dialogplus.DialogPlus;
+import com.orhanobut.dialogplus.OnClickListener;
 import com.orhanobut.dialogplus.OnItemClickListener;
 import com.orhanobut.dialogplus.ViewHolder;
 import com.yalantis.contextmenu.lib.ContextMenuDialogFragment;
@@ -59,13 +63,20 @@ public class MainActivity extends AppCompatActivity
     // menu
     private FragmentManager fragmentManager;
     private ContextMenuDialogFragment mMenuDialogFragment;
-
+    //AUTH
+    private FirebaseAuth auth;
+    private FirebaseUser firebaseUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         fragmentManager = getSupportFragmentManager();
         //ActivityCompat.requestPermissions(MainActivity.this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION},123);
+
+        // get user current
+        this.auth= FirebaseAuth.getInstance();
+        firebaseUser = this.auth.getCurrentUser();
+
 
         initUI();
         initToolbar();
@@ -160,6 +171,10 @@ public class MainActivity extends AppCompatActivity
                 // search
                 showSearchDialog();
                 break;
+            case 4:
+                // user
+                showUserDialog();
+                break;
         }
     }
 
@@ -240,6 +255,7 @@ public class MainActivity extends AppCompatActivity
                 .setOnItemClickListener(new OnItemClickListener() {
                     @Override
                     public void onItemClick(DialogPlus dialog, Object item, View view, int position) {
+
                     }
                 })
                 //.setContentWidth(ViewGroup.LayoutParams.WRAP_CONTENT)  // or any custom width ie: 300
@@ -250,7 +266,42 @@ public class MainActivity extends AppCompatActivity
 
         dialog.show();
     }
+    private void showUserDialog(){
+        DialogPlus dialog = DialogPlus.newDialog(this)
+                .setContentHolder( new ViewHolder(R.layout.dialog_user))
+                /*.setOnItemClickListener(new OnItemClickListener() {
+                    @Override
+                    public void onItemClick(DialogPlus dialog, Object item, View view, int position) {
 
+                        switch (view.getId()){
+                            case R.id.logout:
+                                auth.signOut();
+                                startActivity( new Intent(MainActivity.this, LoginActivity.class));
+                                finish();
+                                break;
+                        }
+                    }
+                })*/
+                .setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(DialogPlus dialog, View view) {
+                        switch (view.getId()){
+                            case R.id.logout:
+                                auth.signOut();
+                                startActivity( new Intent(MainActivity.this, LoginActivity.class));
+                                finish();
+                                break;
+                        }
+                    }
+                })
+                //.setContentWidth(ViewGroup.LayoutParams.WRAP_CONTENT)  // or any custom width ie: 300
+
+                .setGravity(Gravity.TOP)
+                .setExpanded(true)  // This will enable the expand feature, (similar to android L share dialog)
+                .create();
+
+        dialog.show();
+    }
     /*
     @Override
     public void onStart() {
