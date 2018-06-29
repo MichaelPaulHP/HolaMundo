@@ -1,18 +1,30 @@
 package com.example.mrrobot.hola;
 
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.location.Location;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.design.internal.NavigationMenu;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.mrrobot.hola.Services.ServiceLocation;
-import com.getbase.floatingactionbutton.FloatingActionsMenu;
+
 import com.mapbox.mapboxsdk.Mapbox;
 import com.mapbox.mapboxsdk.annotations.MarkerOptions;
 import com.mapbox.mapboxsdk.camera.CameraPosition;
@@ -20,74 +32,199 @@ import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
+import com.yalantis.contextmenu.lib.ContextMenuDialogFragment;
+import com.yalantis.contextmenu.lib.MenuObject;
+import com.yalantis.contextmenu.lib.MenuParams;
+import com.yalantis.contextmenu.lib.interfaces.OnMenuItemClickListener;
+import com.yalantis.contextmenu.lib.interfaces.OnMenuItemLongClickListener;
 
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity
-        implements View.OnClickListener, OnMapReadyCallback,
-        MapboxMap.OnMapClickListener
+        implements View.OnClickListener,
+        OnMenuItemClickListener, OnMenuItemLongClickListener
+
         {
 
-    // attributes
-    private MapView mapView;
-    private MapboxMap mapboxMap;
-    private Location myLocation;
 
-    private FloatingActionsMenu floatingActionMenu;// menu
+
+    // menu
+    private FragmentManager fragmentManager;
+    private ContextMenuDialogFragment mMenuDialogFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        fragmentManager = getSupportFragmentManager();
         //ActivityCompat.requestPermissions(MainActivity.this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION},123);
 
         initUI();
-        // get my location lat and long
-        this.myLocation= new ServiceLocation(MainActivity.this).getLocation();
-        String token="pk.eyJ1IjoibXJtaWNoYWVsYm90IiwiYSI6ImNqZHpiamNnNzBwMXYycXA5cXh2M2xnZjcifQ.iqfPeoVbpWQcLG8bvf9qzw";
-        Mapbox.getInstance(this, token);
+        initToolbar();
+        initMenuFragment();
+        addFragment(new MainFragment(), true, R.id.container);
 
-        mapView.onCreate(savedInstanceState);
-        mapView.getMapAsync(this);
+
+
 
         // set listener for menu
 
 
     }
     private void initUI(){
-        mapView = (MapView) findViewById(R.id.mapView);
-        floatingActionMenu = (FloatingActionsMenu) findViewById(R.id.floatingActionMenu);
+
+
     }
+    private void initToolbar() {
+        Toolbar mToolbar = findViewById(R.id.toolbar);
+
+        setSupportActionBar(mToolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setHomeButtonEnabled(true);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+        }
+        mToolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+    }
+    private void initMenuFragment() {
+        MenuParams menuParams = new MenuParams();
+        menuParams.setActionBarSize(250);
+        menuParams.setMenuObjects(getMenuObjects());
+        menuParams.setClosableOutside(false);
+        mMenuDialogFragment = ContextMenuDialogFragment.newInstance(menuParams);
+        mMenuDialogFragment.setItemClickListener(this);
+        mMenuDialogFragment.setItemLongClickListener(this);
+
+    }
+    protected void addFragment(Fragment fragment, boolean addToBackStack, int containerId) {
+        invalidateOptionsMenu();
+        String backStackName = fragment.getClass().getName();
+        boolean fragmentPopped = fragmentManager.popBackStackImmediate(backStackName, 0);
+        if (!fragmentPopped) {
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.add(containerId, fragment, backStackName)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+            if (addToBackStack)
+                transaction.addToBackStack(backStackName);
+            transaction.commit();
+        }
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.menu_options,menu);
+        return true;
+        //return super.onCreateOptionsMenu(menu);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        //return super.onOptionsItemSelected(item);
+        switch (item.getItemId()){
+            case R.id.menu:
+                mMenuDialogFragment.show(fragmentManager, "ContextMenuDialogFragment");
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public void onBackPressed() {
+        if (mMenuDialogFragment != null && mMenuDialogFragment.isAdded()) {
+            mMenuDialogFragment.dismiss();
+        } else {
+            finish();
+        }
+    }
+    @Override
+    public void onMenuItemClick(View clickedView, int position) {
+        // el position=cero es el "x"
+        Toast.makeText(this, "Clicked on position: " + position, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onMenuItemLongClick(View clickedView, int position) {
+        //Toast.makeText(this, "Long clicked on position: " + position, Toast.LENGTH_SHORT).show();
+    }
+    private List<MenuObject> getMenuObjects() {
+        // You can use any [resource, bitmap, drawable, color] as image:
+        // item.setResource(...)
+        // item.setBitmap(...)
+        // item.setDrawable(...)
+        // item.setColor(...)
+        // You can set image ScaleType:
+        // item.setScaleType(ScaleType.FIT_XY)
+        // You can use any [resource, drawable, color] as background:
+        // item.setBgResource(...)
+        // item.setBgDrawable(...)
+        // item.setBgColor(...)
+        // You can use any [color] as text color:
+        // item.setTextColor(...)
+        // You can set any [color] as divider color:
+        // item.setDividerColor(...)
+
+        List<MenuObject> menuObjects = new ArrayList<>();
+
+        MenuObject close = new MenuObject();
+        close.setBgColor(R.color.colorPrimaryDark);
+        close.setResource(R.drawable.ic_close_white_24dp);
+        close.setMenuTextAppearanceStyle(R.style.TextViewStyle);
+
+        MenuObject search = new MenuObject("Buscar");
+        search.setBgColor(R.color.colorPrimaryDark);
+        BitmapDrawable bd = new BitmapDrawable(getResources(),
+                BitmapFactory.decodeResource(getResources(), R.drawable.ic_search_white_24dp));
+        search.setDrawable(bd);
+        //search.setResource(R.drawable.ic_search_white_24dp);
+        search.setMenuTextAppearanceStyle(R.style.TextViewStyle);
+
+        MenuObject chat = new MenuObject("Chat");
+        chat.setBgColor(R.color.colorPrimaryDark);
+        chat.setResource(R.drawable.ic_chat_white_24dp);
+        chat.setMenuTextAppearanceStyle(R.style.TextViewStyle);
+
+        MenuObject group = new MenuObject("Grupos");
+        group.setBgColor(R.color.colorPrimaryDark);
+        group.setResource(R.drawable.ic_group_add_white_24dp);
+        group.setMenuTextAppearanceStyle(R.style.TextViewStyle);
+
+
+        MenuObject user = new MenuObject("Perfil");
+        user.setBgColor(R.color.colorPrimaryDark);
+        user.setResource(R.drawable.ic_person_white_24dp);
+        user.setMenuTextAppearanceStyle(R.style.TextViewStyle);
+
+
+
+        menuObjects.add(close);
+        menuObjects.add(user);
+        menuObjects.add(search);
+        menuObjects.add(chat);
+        menuObjects.add(group);
+        menuObjects.add(user);
+        return menuObjects;
+    }
+    // END MENU
+
+
+
     @Override
     public void onClick(View view) {
 
     }
-    // MAP BOX listener
-    @Override
-    public void onMapReady(MapboxMap mapboxMap) {
-        //set position of camera
-        MainActivity.this.mapboxMap=mapboxMap;
-        CameraPosition cameraPosition = new CameraPosition.Builder()
-                .target(new LatLng(this.myLocation.getLatitude(), this.myLocation.getLongitude()))
-                .zoom(10)                            // enable zoom feature
-                .build();
-
-        this.mapboxMap.setCameraPosition(cameraPosition);
-        // marker in my position
-        LatLng my = new LatLng(this.myLocation.getLatitude(),this.myLocation.getLongitude());
-        this.mapboxMap.addMarker(new MarkerOptions().position(my));
-
-
-    }
-    @Override
-    public void onMapClick(@NonNull LatLng point) {
-
-    }
-    // END MAP BOX listener
 
 
 
+    /*
     @Override
     public void onStart() {
         super.onStart();
@@ -132,5 +269,5 @@ public class MainActivity extends AppCompatActivity
         super.onSaveInstanceState(outState);
         mapView.onSaveInstanceState(outState);
     }
-
+    */
 }
