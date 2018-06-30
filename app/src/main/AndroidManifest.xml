@@ -25,7 +25,6 @@
         </activity>
         <activity android:name=".Auth.NumberVerificationActivity" />
         <activity android:name=".Chat.Activities.Chat" />
-        <activity android:name=".Auth.CodeVerificationActivity"></activity>
     </application>
 
 </manifest>

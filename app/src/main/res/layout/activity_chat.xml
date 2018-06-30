@@ -27,7 +27,8 @@
             android:layout_gravity="center"
             android:padding="10dp"
             android:textSize="8pt"
-            android:textColor="@color/colorWhite"/>
+            android:textColor="@color/colorWhite"
+            android:fontFamily="@font/source_code_pro"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -48,13 +48,15 @@ android:orientation="vertical">
                 android:id="@+id/txtCodRegion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="+51" />
+                android:text="+51"
+                android:fontFamily="@font/source_code_pro"/>
             <EditText
                 android:id="@+id/txtPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Numero de teléfono"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:fontFamily="@font/source_code_pro"/>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -105,6 +107,7 @@ android:orientation="vertical">
                     android:layout_height="50dp"
                     android:src="@drawable/logohw3"/>
                 <TextView
+                    android:fontFamily="@font/source_code_pro"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Su código se generará automáticamente"/>
@@ -115,10 +118,12 @@ android:orientation="vertical">
                 android:orientation="horizontal"
                 android:gravity="center">
                 <TextView
+                    android:fontFamily="@font/source_code_pro"
                     android:text="Tu código es: "
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <EditText
+                    android:fontFamily="@font/source_code_pro"
                     android:id="@+id/txtCode"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -147,12 +152,14 @@ android:orientation="vertical">
             android:background="@color/colorBlack"
             android:padding="7dp">
             <TextView
+                android:fontFamily="@font/source_code_pro"
                 android:textColor="@color/colorWhite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="¿Aun no le ha llegado un SMS?"
                 android:padding="6dp"/>
             <Button
+                android:fontFamily="@font/source_code_pro"
                 android:id="@+id/btnReenviar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
