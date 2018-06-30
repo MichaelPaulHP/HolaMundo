@@ -24,7 +24,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Auth.NumberVerificationActivity" />
-        <activity android:name=".Chat.Activities.Chat"></activity>
+        <activity android:name=".Chat.Activities.Chat" />
+        <activity android:name=".Auth.CodeVerificationActivity"></activity>
     </application>
 
 </manifest>
