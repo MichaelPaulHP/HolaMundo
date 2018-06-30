@@ -1,9 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Chat.Activities.Chat">
+    tools:context=".Chat.Activities.Chat"
+    android:orientation="vertical">
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="6dp"
+        android:gravity="center"
+        android:background="@color/colorBlack">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/fotoPerfil"
+            android:layout_width="48sp"
+            android:layout_height="48sp"
+            android:src="@drawable/person" />
+        <TextView
+            android:id="@+id/nombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Juan"
+            android:layout_gravity="center"
+            android:padding="10dp"
+            android:textSize="8pt"
+            android:textColor="@color/colorWhite"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end|center">
+            <ImageButton
+                android:id="@+id/cerrarSesion"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:hint="Cerrar Sesion"
+                android:src="@drawable/ic_power"
+                android:paddingRight="10dp"
+                android:background="@android:color/transparent"/>
+
+        </LinearLayout>
+    </LinearLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvMensajes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@color/colorBlack">
+    </android.support.v7.widget.RecyclerView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="7sp"
+        android:visibility="gone">
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="7dp"
+        android:background="@color/colorBlack">
+
+
+        <EditText
+            android:id="@+id/txtMensaje"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Escribe un mensaje"
+            android:layout_weight="1"
+            android:textColor="@color/colorWhite"
+            android:textColorHint="@color/colorGrey"
+            android:backgroundTint="@color/colorWhite"
+            />
+        <ImageButton
+            android:id="@+id/btnMic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:src="@drawable/microfono"
+            android:layout_gravity="center"
+            android:padding="10dp"/>
+
+        <ImageButton
+            android:padding="17dp"
+            android:id="@+id/btnEnviar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Enviar"
+            android:src="@drawable/ic_enviar2"
+            android:background="@android:color/transparent"/>
+    </LinearLayout>
+
+
+</LinearLayout>
